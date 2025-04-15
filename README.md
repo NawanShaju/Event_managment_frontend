@@ -1,71 +1,86 @@
-# Getting Started with Create React App
+# Event Management System – Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend of the Event Management System, built with React.js and styled using Tailwind CSS. It interacts with the Flask-based backend to allow users to register, log in, browse and RSVP to events. Admin users can create and manage events.
 
-## Available Scripts
+Features
 
-In the project directory, you can run:
+JWT-based authentication
+User registration & login
+Event listing and detail pages
+RSVP to events
+Admin-only event creation
+Client-side form validation
+Responsive design with Tailwind CSS
+Redux/Context API for state management
 
-### `npm start`
+Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+React.js
+React Router DOM
+Axios
+Tailwind CSS
+Vite / Create React App (based on your setup)
+Redux / Context API (for global state)
+JWT for auth
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Setup Instructions
 
-### `npm test`
+1. Clone the repository
+git clone https://github.com/yourusername/event-management.git
+cd event-management/frontend
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Install dependencies
+npm install
 
-### `npm run build`
+Run the development server
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+npm run dev   # for Vite
+# OR
+npm start     
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Directory Structure
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+frontend/
+│
+├── src/
+│   ├── components/        # Reusable components (EventCard, Navbar, etc.)
+│   ├── pages/             # Route-specific pages (Login, Register, Events, etc.)
+│   ├── context/ or store/ # Auth/State management (if used)
+│   ├── App.jsx            # Main app component
+│   ├── main.jsx           # Entry point
+│   └── ...
+│
+├── public/
+├── tailwind.config.js
+├── vite.config.js or package.json
+└── .env
 
-### `npm run eject`
+Main Pages
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Route	       Description	                    Access
+/login	       Login form	                    Public
+/register	   Registration form                Public
+/events	       View all events	                Public
+/events/:id	   View event details, RSVP option	Authenticated
+/create-event  Admin-only event creation form	Admin
+/dashboard	   Optional user dashboard	        Authenticated
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Notes on Implementation
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+All authenticated requests send JWT from localStorage via the Authorization: Bearer <token> header.
+Axios is used for all API calls.
+Tailwind CSS handles layout and styling with responsive utility classes.
+Route protection is handled via wrappers like PrivateRoute or inline logic in components.
+Form error handling includes backend validation feedback and frontend required fields.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+Future Improvements
 
-## Learn More
+Add toast notifications using something like react-toastify
+Add loading spinners and skeleton screens
+Paginate event listings
+Allow users to cancel RSVPs
+Build an admin dashboard to manage events and users
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Backend Integration
 
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-# Event_managment_frontend
+Make sure the backend is running and CORS is properly configured to allow requests from http://localhost:3000.
